@@ -41,7 +41,7 @@ i18n();
                     <select name="select" multiple size="10" id="poitype" onDblclick="UpdateButtons(1);LoadNextPage(1,2);" onchange="UpdateButtons(1)">
                         <option value="amenity:fuel"><? msg('Fuel'); ?></option>
                         <option value="amenity:atm"><? msg('ATM'); ?></option>
-                        <option value="amenity:speed_camera"><? msg('Speed camera'); ?></option>
+                        <option value="highway:speed_camera"><? msg('Speed camera'); ?></option>
                         <option value="highway:bus_stop"><? msg('Bus stop'); ?></option>
                         <option value="amenity:parking"><? msg('Parking'); ?></option>
                         <option value="amenity:bicycle_parking"><? msg('Bicycle parking'); ?></option>
