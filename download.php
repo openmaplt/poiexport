@@ -6,7 +6,7 @@
 
 
 // Don't forget to rename config.php.example!
-require	("config.php"); 
+require	'config.php'; 
 
 // Check to see if all the required parameters are given
 if (!isset($_GET["output"]) || !isset($_GET["k"]) || !isset($_GET["v"]) || !isset($_GET["filename"])) {
@@ -15,16 +15,16 @@ if (!isset($_GET["output"]) || !isset($_GET["k"]) || !isset($_GET["v"]) || !isse
 
 // Parse GET parameters
 $pos = strpos(strtolower($_SERVER['HTTP_ACCEPT_CHARSET']),'utf-8');
-if ( $pos == false ) {
-  $output = pg_escape_string(utf8_encode($_GET["output"]));
+if ( $pos !== false ) {
+  $output = utf8_encode($_GET["output"]);
   $k = pg_escape_string(utf8_encode($_GET["k"]));
   $v = pg_escape_string(utf8_encode($_GET["v"]));
-  $filename = pg_escape_string(utf8_encode($_GET["filename"]));
+  $filename = utf8_encode($_GET['filename']);
 } else {
-  $output = pg_escape_string($_GET["output"]);
+  $output = $_GET["output"];
   $k = pg_escape_string($_GET["k"]);
   $v = pg_escape_string($_GET["v"]);
-  $filename = pg_escape_string($_GET["filename"]);
+  $filename = $_GET['filename'];
 }
 
 // Connect to the postgresql database server
@@ -43,13 +43,13 @@ FROM (
          x(transform(way, 4326)) AS lon, 
          y(transform(way, 4326)) AS lat 
   FROM planet_osm_point 
-  WHERE $k='$v'
+  WHERE {$k}='{$v}'
 UNION
   SELECT name, 
          x(centroid(transform(way, 4326))) AS lon, 
          y(centroid(transform(way, 4326))) AS lat 
   FROM planet_osm_polygon 
-  WHERE $k='$v'
+  WHERE {$k}='{$v}'
 ) AS u1";
 
 // Run query
@@ -94,15 +94,7 @@ pg_close($dbconn);
  * @param string $filename
  */
 function asGarmin($data, $filename) {
-// Set headers
-  header("Pragma: public");
-  header("Expires: 0");
-  header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-
-  header("Cache-Control: public");
-  header("Content-Description: File Transfer");
-  header("Content-Disposition: attachment; filename=$filename");
-  header("Content-Type: application/force-download; charset=utf-8");
+	sendHeaders($filename);
 
   while ($line = pg_fetch_array($data, null, PGSQL_ASSOC)) {
     echo $line["lon"] . ", " .
@@ -120,16 +112,9 @@ function asGarmin($data, $filename) {
  * @param string $filename
  */
 function asOv2($data, $filename) {
-// Set headers
-  header("Pragma: public");
-  header("Expires: 0");
-  header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-  header("Cache-Control: public");
-
-  header("Content-Description: File Transfer");
-  header("Content-Disposition: attachment; filename=$filename");
-  header("Content-Type: application/octet-stream");
-  header("Content-Transfer-Encoding: binary; charset=utf-8");
+	sendHeaders($filename);
+	header("Content-Type: application/octet-stream");
+	header("Content-Transfer-Encoding: binary; charset=utf-8");
 
   while ($line = pg_fetch_array($data, null, PGSQL_ASSOC)) {
     echo chr(0x02) .
@@ -149,15 +134,7 @@ function asOv2($data, $filename) {
  * @param string $filename
  */
 function asGpx($data, $filename) {
-// Set headers
-  header("Pragma: public");
-  header("Expires: 0");
-  header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-  header("Cache-Control: public");
-
-  header("Content-Description: File Transfer");
-  header("Content-Disposition: attachment; filename=$filename");
-  header("Content-Type: application/force-download; charset=utf-8");
+	sendHeaders($filename);
 
   echo "<?xml version='1.0' encoding='UTF-8'?>\n" .
        "<gpx version=\"1.1\" creator=\"OSM-NL POI export\" xmlns=\"http://www.topografix.com/GPX/1/1\"\n" .
@@ -184,15 +161,8 @@ function asGpx($data, $filename) {
  * @param string $filename
  */
 function asKml($data, $filename) {
-// Set headers
-  header("Pragma: public");
-  header("Expires: 0");
-  header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-  header("Cache-Control: public");
-
-  header("Content-Description: File Transfer");
-  header("Content-Disposition: attachment; filename=$filename");
-  header("Content-Type: application/vnd.google-earth.kml+xml; charset=utf-8");
+	sendHeaders($filename);
+	header("Content-Type: application/vnd.google-earth.kml+xml; charset=utf-8");
 
   echo "<?xml version='1.0' encoding='UTF-8'?>\n<kml xmlns='http://earth.google.com/kml/2.2'>\n";
   echo "<Document>\n";
@@ -215,34 +185,19 @@ function asKml($data, $filename) {
  * @param string $filename
  */
 function asOSM($data, $filename) {
-// Set headers
-  header("Pragma: public");
-  header("Expires: 0");
-  header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-  header("Cache-Control: public");
+    sendHeaders($filename);
 
-  header("Content-Description: File Transfer");
-  header("Content-Disposition: attachment; filename=$filename");
-  header("Content-Type: application/force-download; charset=utf-8");
-
-  echo '<?xml version="1.0" encoding="UTF-8"?>';
-  echo "\n";
-  echo '<osm version="0.6" generator="POI export">';
-  echo "\n";
-  echo '<bounds minlat="-180" minlon="-90" maxlat="180" maxlon="90"/>';
-  echo "\n";
+  echo '<?xml version="1.0" encoding="UTF-8"?>', PHP_EOL;
+  echo '<osm version="0.6" generator="POI export">', PHP_EOL;
+  echo '<bounds minlat="-180" minlon="-90" maxlat="180" maxlon="90"/>', PHP_EOL;
 
   while ($line = pg_fetch_array($data, null, PGSQL_ASSOC)) {
-    //$name = htmlentities($line["name"], ENT_QUOTES);
     $name = htmlspecialchars($line["name"]);
-    echo '<node id="-1" lat="' . $line["lat"] . '" lon="' .  $line["lon"] . '" version="1" changeset="-1" user="poiexport" uid="-1" visible="true" timestamp="2008-12-17T01:18:42Z">';
-    echo "\n";
-    echo '<tag k="name" v="' . $name . '"/>';
-    echo "\n";
-    echo '</node>';
-    echo "\n";
+    echo '<node id="-1" lat="' . $line["lat"] . '" lon="' .  $line["lon"] . '" version="1" changeset="-1" user="poiexport" uid="-1" visible="true" timestamp="2008-12-17T01:18:42Z">', PHP_EOL;
+    echo '<tag k="name" v="' . $name . '"/>', PHP_EOL;
+    echo '</node>', PHP_EOL;
   }
-  echo "</osm>";
+  echo '</osm>';
 }
 
 /**
@@ -254,15 +209,7 @@ function asOSM($data, $filename) {
  * @param string $filename
  */
 function asOziExplorer($data, $filename) {
-// Set headers
-  header("Pragma: public");
-  header("Expires: 0");
-  header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-  header("Cache-Control: public");
-
-  header("Content-Description: File Transfer");
-  header("Content-Disposition: attachment; filename=$filename");
-  header("Content-Type: application/force-download; charset=utf-8");
+	sendHeaders($filename);
 
   $counter = 1;
   echo "OziExplorer Waypoint File Version 1.1\n";
@@ -288,15 +235,7 @@ function asOziExplorer($data, $filename) {
  * @param string $filename
  */
 function asGeoJSON($data, $filename) {
-  //Set Headers
-  header("Pragma: public");
-  header("Expires: 0");
-  header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-  header("Cache-Control: public");
-
-  header("Content-Description: File Transfer");
-  header("Content-Disposition: attachment; filename=$filename");
-  header("Content-Type: application/force-download; charset=utf-8");
+	sendHeaders($filename);
 
   $result = array();
   $result["type"] = "FeatureCollection";
@@ -318,17 +257,21 @@ function asGeoJSON($data, $filename) {
   echo json_encode($result);
 }
 
-function GenerateSafeFileName($filename) {
-  $filename = strtolower($filename);
-  $filename = str_replace("#","_",$filename);
-  $filename = str_replace(" ","_",$filename);
-  $filename = str_replace("'","",$filename);
-  $filename = str_replace('"',"",$filename);
-  $filename = str_replace("__","_",$filename);
-  $filename = str_replace("&","and",$filename);
-  $filename = str_replace("/","_",$filename);
-  $filename = str_replace("\\","_",$filename);
-  $filename = str_replace("?","",$filename);
-  return $filename;
+function sendHeaders($filename){
+	// send headers
+	header('Pragma: public');
+	header('Expires: 0');
+	header('Cache-Control: public, must-revalidate, post-check=0, pre-check=0');
+	header("Content-Description: File Transfer");
+	header("Content-Disposition: attachment; filename={$filename}");
+	header("Content-Type: application/force-download; charset=utf-8");
 }
-?>
+
+function GenerateSafeFileName($filename) {
+	$filename = strtolower($filename);
+	$filename = strip_tags($filename);
+	$filename = str_replace(array('#', ' ', '__', '/', '\\'), '_', $filename);
+	$filename = str_replace(array("'", '?'), '', $filename);
+	$filename = str_replace("&", "and", $filename);
+	return $filename;
+}

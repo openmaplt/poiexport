@@ -52,4 +52,3 @@ function i18n() {
 	}
 	$_SESSION['LANG'] = $LANG;
 }
-?>

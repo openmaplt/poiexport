@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('include/functions.php');
+include 'include/functions.php';
 
 //Check if the language is set with the ?l=<2lettercode> GET parameter
 if(isset($_GET["l"])) {
