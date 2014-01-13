@@ -12,8 +12,8 @@ if(isset($_GET["l"])) {
 i18n();
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
     <head>
         <title><? msg('OpenStreetMap POI export');?> - <? msg('download free point of interest'); ?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -23,10 +23,9 @@ i18n();
         <meta http-equiv="Content-Language" content="<? echo $_SESSION['LANG']; ?>" />
         <link rel="shortcut icon" href="favicon.ico" />
         <link type="text/css" href="style.css" rel="stylesheet" />
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script type="text/javascript" src="ui.js"></script>
     </head>
-
     <body>
         <div class="wizardwrapper">
             <div class="wizardpanel 1">
