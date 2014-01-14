@@ -125,7 +125,7 @@ textdomain('default');
                 <div style="clear:both"></div>
             </div>
             <div class="footer"><? echo _('Poi Export'); ?> - <? echo VERSION; ?>&nbsp;
-                <? echo _('data'); ?> <a href="http://creativecommons.org/licenses/by-sa/2.0/">cc-by-sa</a>&nbsp;
+                <? echo _('data'); ?> <a href="http://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>&nbsp;
                 <a href="http://www.openstreetmap.nl/"><? echo _('OpenStreetMap'); ?></a>&nbsp;<? echo _('community') ?>.&nbsp;-&nbsp;
                 <? echo _('Created by'); ?>&nbsp;<a href="http://www.openstreetmap.org/user/rullzer">rullzer</a>&nbsp;<? echo _('and'); ?>&nbsp;<a href="http://www.openstreetmap.org/user/Rubke">rubke</a>
            </div>
