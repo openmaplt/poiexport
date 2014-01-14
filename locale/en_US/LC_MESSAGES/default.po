@@ -25,8 +25,8 @@ msgstr "OpenStreetMap POI Export"
 #: index.php:33
 #: index.php:83
 #: index.php:109
-msgid "1: POI type"
-msgstr "1: POI type"
+msgid "Step 1: POI type"
+msgstr "Step 1: POI type"
 
 #: index.php:33
 #: index.php:83
@@ -37,8 +37,8 @@ msgstr "Select the POI type"
 #: index.php:34
 #: index.php:84
 #: index.php:110
-msgid "2: Device"
-msgstr "2: Device"
+msgid "Step 2: Device"
+msgstr "Step 2: Device"
 
 #: index.php:34
 #: index.php:84
@@ -49,8 +49,8 @@ msgstr "Select the device or file type you want to download to"
 #: index.php:35
 #: index.php:85
 #: index.php:111
-msgid "3: Export"
-msgstr "3: Export"
+msgid "Step 3: Download"
+msgstr "Step 3: Download"
 
 #: index.php:35
 #: index.php:85

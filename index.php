@@ -30,9 +30,9 @@ textdomain('default');
         <div class="wizardwrapper">
             <div class="wizardpanel 1">
                 <ul class="mainNav threeStep">
-                    <li class="current"><a title=""><em><? echo _('1: POI type'); ?></em><span><? echo _('Select the POI type') ?></span></a></li>
-                    <li><a title=""><em><? echo _('2: Device'); ?></em><span><? echo _('Select the device or file type you want to download to'); ?></span></a></li>
-                    <li class="mainNavNoBg"><a title=""><em><? echo _('3: Export'); ?></em><span><? echo _('Download POI file'); ?></span></a></li>
+                    <li class="current"><a title=""><em><? echo _('Step 1: POI type'); ?></em><span><? echo _('Select the POI type') ?></span></a></li>
+                    <li><a title=""><em><? echo _('Step 2: Device'); ?></em><span><? echo _('Select the device or file type you want to download to'); ?></span></a></li>
+                    <li class="mainNavNoBg"><a title=""><em><? echo _('Step 3: Download'); ?></em><span><? echo _('Download POI file'); ?></span></a></li>
                 </ul>
                 <div class="wizardcontent">
                     <img src="images/pushpin.png" alt="" />
@@ -80,9 +80,9 @@ textdomain('default');
 
             <div class="wizardpanel 2">
                 <ul class="mainNav threeStep">
-                    <li class="lastDone"><a href="#" title="" onclick="LoadNextPage(2,1);"><em><? echo _('1: POI type'); ?></em><span><? echo _('Select the POI type') ?></span></a></li>
-                    <li class="current"><a title=""><em><? echo _('2: Device'); ?></em><span><? echo _('Select the device or file type you want to download to'); ?></span></a></li>
-                    <li class="mainNavNoBg"><a title=""><em><? echo _('3: Export'); ?></em><span><? echo _('Download POI file'); ?></span></a></li>
+                    <li class="lastDone"><a href="#" title="" onclick="LoadNextPage(2,1);"><em><? echo _('Step 1: POI type'); ?></em><span><? echo _('Select the POI type') ?></span></a></li>
+                    <li class="current"><a title=""><em><? echo _('Step 2: Device'); ?></em><span><? echo _('Select the device or file type you want to download to'); ?></span></a></li>
+                    <li class="mainNavNoBg"><a title=""><em><? echo _('Step 3: Download'); ?></em><span><? echo _('Download POI file'); ?></span></a></li>
                 </ul>
                 <div class="wizardcontent">
                     <img src="images/device.png" alt="" />
