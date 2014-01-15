@@ -1,0 +1,274 @@
+# 
+# Translators:
+# ramunasd <ieskok@ramuno.lt>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: POI Export\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-01-14 20:32+0300\n"
+"PO-Revision-Date: 2014-01-15 22:18+0300\n"
+"Last-Translator: Ramunas <ieskok@ramuno.lt>\n"
+"Language-Team: Lithuanian (http://www.transifex.com/projects/p/poi-export/language/lt/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: lt\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: index.php:18
+msgid "download free point of interest"
+msgstr "atisiųsti POI nemokamai"
+
+#: index.php:20
+msgid "OpenStreetMap POI Export"
+msgstr "OpenStreetMap POI export"
+
+#: index.php:33
+#: index.php:83
+#: index.php:109
+msgid "Step 1: POI type"
+msgstr "Žingsnis 1: POI tipas"
+
+#: index.php:33
+#: index.php:83
+#: index.php:109
+msgid "Select the POI type"
+msgstr "Pasirinkite POI tipą"
+
+#: index.php:34
+#: index.php:84
+#: index.php:110
+msgid "Step 2: Device"
+msgstr "Žingsnis 2: Įrenginys"
+
+#: index.php:34
+#: index.php:84
+#: index.php:110
+msgid "Select the device or file type you want to download to"
+msgstr "Pasirinkite įrenginį arba failo tipą"
+
+#: index.php:35
+#: index.php:85
+#: index.php:111
+msgid "Step 3: Download"
+msgstr "Žingsnis 3: Atsisiųsti"
+
+#: index.php:35
+#: index.php:85
+#: index.php:111
+msgid "Download POI file"
+msgstr "Atsisiųsti POI failą"
+
+#: index.php:39
+msgid "Select the type of POI you would like to download. Currently only one type can be selected."
+msgstr "Pasirinkite POI tipą, kurį norite atsisiųsti. Vienu metu galite pažymėti tik vieną tipą."
+
+#: index.php:41
+msgid "Fuel"
+msgstr "Kuro kolonėlės"
+
+#: index.php:42
+msgid "ATM"
+msgstr "Bankomatai"
+
+#: index.php:43
+msgid "Speed camera"
+msgstr "Greičio kameros"
+
+#: index.php:44
+msgid "Bus stop"
+msgstr "Viešo transporto stotelės"
+
+#: index.php:45
+msgid "Parking"
+msgstr "Stovėjimo aikštelės"
+
+#: index.php:46
+msgid "Bicycle parking"
+msgstr "Dviračių aikštelės"
+
+#: index.php:47
+msgid "Place of worship"
+msgstr "Maldos namai"
+
+#: index.php:48
+msgid "Hospital"
+msgstr "Ligoninės"
+
+#: index.php:49
+msgid "Supermarket"
+msgstr "Prekybos centrai"
+
+#: index.php:50
+msgid "Theatre"
+msgstr "Teatrai"
+
+#: index.php:51
+msgid "Police"
+msgstr "Policija"
+
+#: index.php:52
+msgid "Fire station"
+msgstr "Gaisrinės"
+
+#: index.php:53
+msgid "Post box"
+msgstr "Pašto dėžutės"
+
+#: index.php:54
+msgid "Post office"
+msgstr "Pašto skyriai"
+
+#: index.php:55
+msgid "Recycling"
+msgstr "Atliekų perdirbimas"
+
+#: index.php:56
+msgid "Restaurant"
+msgstr "Restoranai"
+
+#: index.php:57
+msgid "Fast food"
+msgstr "Greitas maistas"
+
+#: index.php:58
+msgid "Toilets"
+msgstr "Vieši tuoletai"
+
+#: index.php:59
+msgid "Pub"
+msgstr "Barai"
+
+#: index.php:60
+msgid "Waste basket"
+msgstr "Šiukšliadėžės"
+
+#: index.php:61
+msgid "Cattle grid"
+msgstr "Galvijų fermos"
+
+#: index.php:62
+msgid "Camp site"
+msgstr "Stovyklavietės"
+
+#: index.php:63
+msgid "Hotel"
+msgstr "Viešbučiai"
+
+#: index.php:64
+msgid "Museum"
+msgstr "Muziejai"
+
+#: index.php:65
+msgid "Zoo"
+msgstr "Zoologijos sodai"
+
+#: index.php:66
+msgid "Castle"
+msgstr "Pilys"
+
+#: index.php:67
+msgid "Windmill"
+msgstr "Vėjo malūnai"
+
+#: index.php:68
+msgid "Lighthouse"
+msgstr "Švyturiai"
+
+#: index.php:69
+msgid "Watermill"
+msgstr "Vandens malūnai"
+
+#: index.php:70
+msgid "Water tower"
+msgstr "Vandens bokštai"
+
+#: index.php:71
+msgid "Nightclub"
+msgstr "Naiktiniai klubai"
+
+#: index.php:72
+msgid "Stripclub"
+msgstr "Striptizo klubai"
+
+#: index.php:76
+#: index.php:101
+msgid "Next"
+msgstr "Toliau"
+
+#: index.php:89
+msgid "Select the device or file type you want to download the POI in"
+msgstr "Pasirinkite įrenginį arba POI failo tipą"
+
+#: index.php:91
+msgid "TomTom overlay (ov2)"
+msgstr "TomTom overlay (ov2)"
+
+#: index.php:92
+msgid "Garmin (csv)"
+msgstr "Garmin (csv)"
+
+#: index.php:93
+msgid "GPS Exchange format (gpx)"
+msgstr "GPS Exchange format (gpx)"
+
+#: index.php:94
+msgid "Google Earth (kml)"
+msgstr "Google Earth (kml)"
+
+#: index.php:95
+msgid "OziExplorer (wpt)"
+msgstr "OziExplorer (wpt)"
+
+#: index.php:96
+msgid "GeoJSON (geojson)"
+msgstr "GeoJSON (geojson)"
+
+#: index.php:100
+#: index.php:122
+msgid "Previous"
+msgstr "Atgal"
+
+#: index.php:115
+msgid "The file is ready for download."
+msgstr "Failas paruoštas atsisiuntimui."
+
+#: index.php:117
+msgid "Poi type"
+msgstr "POI tipas"
+
+#: index.php:118
+msgid "Device type"
+msgstr "Įrenginys"
+
+#: index.php:123
+msgid "Download"
+msgstr "Atsisiųsti"
+
+#: index.php:127
+msgid "Poi Export"
+msgstr "POI Export"
+
+#: index.php:128
+msgid "data"
+msgstr "duomenys iš"
+
+#: index.php:129
+msgid "OpenStreetMap"
+msgstr "OpenStreetMap"
+
+#: index.php:129
+msgid "community"
+msgstr "bendruomenė"
+
+#: index.php:130
+msgid "Created by"
+msgstr "Sukurė"
+
+#: index.php:130
+msgid "and"
+msgstr "ir"
+
