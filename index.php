@@ -17,7 +17,7 @@ textdomain('default');
         <meta http-equiv="Content-Language" content="<? echo Locale::getDefault(); ?>" />
         <link rel="shortcut icon" href="favicon.ico" />
         <link type="text/css" href="style.css" rel="stylesheet" />
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script type="text/javascript" src="ui.js"></script>
     </head>
     <body>
