@@ -40,14 +40,14 @@ pg_set_client_encoding("UTF-8");
 $query = "SELECT name, lat, lon
 FROM (
   SELECT name, 
-         x(transform(way, 4326)) AS lon, 
-         y(transform(way, 4326)) AS lat 
+         st_x(st_transform(way, 4326)) AS lon, 
+         st_y(st_transform(way, 4326)) AS lat 
   FROM planet_osm_point 
   WHERE {$k}='{$v}'
 UNION
   SELECT name, 
-         x(centroid(transform(way, 4326))) AS lon, 
-         y(centroid(transform(way, 4326))) AS lat 
+         st_x(st_centroid(st_transform(way, 4326))) AS lon, 
+         st_y(st_centroid(st_transform(way, 4326))) AS lat 
   FROM planet_osm_polygon 
   WHERE {$k}='{$v}'
 ) AS u1";
