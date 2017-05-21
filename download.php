@@ -14,7 +14,7 @@ if (!isset($_GET["output"]) || !isset($_GET["k"]) || !isset($_GET["v"]) || !isse
 }
 
 // Parse GET parameters
-$pos = strpos(strtolower($_SERVER['HTTP_ACCEPT_CHARSET']),'utf-8');
+$pos = strpos(strtolower(@$_SERVER['HTTP_ACCEPT_CHARSET']), 'utf-8');
 if ( $pos !== false ) {
   $output = utf8_encode($_GET["output"]);
   $k = pg_escape_string(utf8_encode($_GET["k"]));
@@ -94,13 +94,16 @@ pg_close($dbconn);
  * @param string $filename
  */
 function asGarmin($data, $filename) {
-	sendHeaders($filename);
-
+  sendHeaders($filename);
+  $output = fopen('php://output', 'w');
   while ($line = pg_fetch_array($data, null, PGSQL_ASSOC)) {
-    echo $line["lon"] . ", " .
-         $line["lat"] . ", \"" .
-         $line["name"] . "\"\n";
+    fputcsv($output, [
+      $line['lon'],
+      $line['lat'],
+      $line['name'],
+    ]);
   }
+  fclose($output);
 }
 
 /**
